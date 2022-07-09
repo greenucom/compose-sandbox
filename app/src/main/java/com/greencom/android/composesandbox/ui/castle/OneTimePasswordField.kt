@@ -24,7 +24,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 
@@ -41,6 +40,7 @@ fun OneTimePasswordField(
     onValueChanged: (String) -> Unit,
     cellCount: Int,
     modifier: Modifier = Modifier,
+    horizontalArrangement: Arrangement.Horizontal = Arrangement.spacedBy(8.dp),
     cellSize: DpSize = DpSize(CellSizeDefault, CellSizeDefault),
     cellShape: Shape = RoundedCornerShape(4.dp),
     cellBackgroundColor: Color = MaterialTheme.colors.background,
@@ -48,7 +48,6 @@ fun OneTimePasswordField(
     cellTextStyle: TextStyle = LocalTextStyle.current,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    spacedBy: Dp = 8.dp,
 ) {
     require(cellCount > 0) { "cellCount should be positive" }
 
@@ -77,7 +76,7 @@ fun OneTimePasswordField(
             focusRequester.requestFocus()
             keyboardController?.show()
         },
-        horizontalArrangement = Arrangement.spacedBy(spacedBy),
+        horizontalArrangement = horizontalArrangement,
     ) {
         for (i in 0 until cellCount) {
             OneTimePasswordCell(
